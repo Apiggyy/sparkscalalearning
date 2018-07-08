@@ -12,14 +12,15 @@ object ParquetMergeSchema extends App {
 
   val studentsWithNameAndAge = Array(("leo", 21),("jack", 22))
   val studentsWithNameAndAgeDf = sc.parallelize(studentsWithNameAndAge, 2).toDF("name", "age")
-  studentsWithNameAndAgeDf.write.parquet("hdfs://spark1:9000/spark-learning/students/NameAndAge")
+  studentsWithNameAndAgeDf.write.mode("append").parquet("hdfs://spark1:9000/spark-learning/students")
 
   val studentsWithNameAndGrade = Array(("marry", "A"),("tom", "B"))
   val studentsWithNameAndGradeDf = sc.parallelize(studentsWithNameAndGrade, 2).toDF("name", "grade")
-  studentsWithNameAndAgeDf.write.parquet("hdfs://spark1:9000/spark-learning/students/NameAndGrade")
+  studentsWithNameAndGradeDf.write.mode("append").parquet("hdfs://spark1:9000/spark-learning/students")
 
   val mergeDF = sqlContext.read.option("mergeSchema", "true").parquet("hdfs://spark1:9000/spark-learning/students")
   mergeDF.printSchema()
+  mergeDF.show();
 
 
 }
