@@ -1,4 +1,4 @@
-package com.self.learning
+package com.self.learning.core
 
 import org.apache.spark.{SparkConf, SparkContext}
 

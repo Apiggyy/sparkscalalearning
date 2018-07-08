@@ -1,4 +1,4 @@
-package com.self.learning
+package com.self.learning.core
 
 class SecondarySortKey(val first: Int, val second: Int) extends Ordered[SecondarySortKey] with Serializable {
   override def compare(that: SecondarySortKey): Int = {
